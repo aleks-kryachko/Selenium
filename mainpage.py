@@ -4,6 +4,10 @@ import time
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+
 
 url = 'http://www.python.org'
 
@@ -13,14 +17,18 @@ def browser():
 
     browser = webdriver.Chrome(executable_path=".chromedriver.exe")
     browser = webdriver.Chrome()
-    browser.set_window_size(1416, 1026)
+    # WebElement element = browser.findElement(By.tagName("p"));
+    # browser.set_window_size(1416, 1026)
     # browser.maximize_window()
+    url = 'http://www.python.org'
     print(browser.get_window_size())
     browser.get(url=url)
+    browser.set_page_load_timeout(10) # sets timeout to 10 sec
     yield browser
     # этот код выполнится после завершения теста
     print("\nquit browser..")
     browser.quit()
+
 
 def test_01_status_code():
     url = 'http://www.python.org'
@@ -29,6 +37,7 @@ def test_01_status_code():
 def test_02_main_page(browser):
 
     assert "Python" in browser.title, 'title page'
+    assert "Python" in browser.title, 'Download'
 
 def test_03_assert_button(browser):
 
@@ -46,7 +55,8 @@ def test_04_check_search(browser):
     browser.find_element(By.NAME, 'q').clear()
     browser.find_element(By.NAME, 'q').send_keys('3.9')
     browser.find_element(By.ID, 'submit').click()
-    # time.sleep(5)
+    # assert browser.find_element(By.LINK_TEXT, 'Version: Python 3.x.x')
+
     assert browser.find_element(By.CLASS_NAME, 'site-headline'), 'logo python tm'
     assert browser.find_elements(By.CSS_SELECTOR, '#content > div > section > h2'), 'Search'
     assert browser.find_element(By.NAME, 'q'), 'Search'
@@ -54,6 +64,7 @@ def test_04_check_search(browser):
     browser.find_element(By.NAME, 'q').clear()
     browser.find_element(By.NAME, 'q').send_keys('python')
     browser.find_element(By.ID, 'submit').send_keys(Keys.ENTER)
+    assert browser.find_element(By.LINK_TEXT, 'Python')
 
     assert browser.find_elements(By.XPATH, '//*[@id="news"]/a'),'block_News'
     assert browser.find_elements(By.CSS_SELECTOR, '#content > div > section > form > h3'), 'block_world_Result'
@@ -63,6 +74,8 @@ def test_04_check_search(browser):
     browser.find_element(By.NAME, 'q').send_keys('5682146212221')
     browser.find_element(By.ID, 'submit').send_keys(Keys.ENTER)
     assert browser.find_elements(By.CSS_SELECTOR, '#content > div > section > form > ul > p'), 'Not found'
+    # assert browser.find_element(By.LINK_TEXT, 'Not found')
+    # browser.find_element(By.LINK_TEXT, 'Not found')
 
 
 
