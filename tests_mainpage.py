@@ -16,7 +16,7 @@ def browser():
     browser = webdriver.Chrome(executable_path=".chromedriver.exe")
     browser = webdriver.Chrome()
     # browser.set_window_size(1416, 1026)
-    # browser.maximize_window()
+    browser.maximize_window()
     url = 'http://www.python.org'
     print(browser.get_window_size())
     browser.get(url=url)
@@ -69,14 +69,14 @@ def test_04_check_search(browser):
     browser.find_element(By.NAME, 'q').send_keys('5682146212221')
     browser.find_element(By.ID, 'submit').send_keys(Keys.ENTER)
     assert browser.find_elements(By.CSS_SELECTOR, '#content > div > section > form > ul > p'), 'Not found'
-    # assert browser.find_element(By.LINK_TEXT, 'Not found')
-    # browser.find_element(By.LINK_TEXT, 'Python')
+
 def test_05_download(browser):
     browser.find_element(By.CSS_SELECTOR, '#downloads > a').click()
     browser.find_element(By.CSS_SELECTOR, '#touchnav-wrapper > header > div > div.header-banner > div > p:nth-child(5) > a:nth-child(1)').click()
     browser.find_element(By.CSS_SELECTOR, '#content > div > section > article > ul > li > a').click()
     browser.find_element(By.CSS_SELECTOR, '#content > div > section > article > table > tbody > tr:nth-child(3) > td:nth-child(1) > a').click()
     time.sleep(8)
+
 
 
 
