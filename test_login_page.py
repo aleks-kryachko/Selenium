@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 
-url = 'http://www.python.org'
+url = 'https://www.lambdatest.com/'
 
 @pytest.fixture
 def browser():
@@ -30,6 +30,6 @@ def test_01_status_code():
     responce = requests.get(url=url)
     assert responce.status_code == 200, 'status not 200'
 def test_02_main_page(browser):
+    assert browser.find_elements(By.XPATH, '//*[@id="header"]/nav/div/div/div[2]/div/div/div[2]/a[1]'), 'Login'
+    assert browser.find_elements(By.XPATH, '//*[@id="header"]/nav/div/div/div[2]/div/div/div[2]/a[2]'), 'Sing Up'
 
-    assert "Python" in browser.title, 'title page'
-    assert "Python" in browser.title, 'Download'
