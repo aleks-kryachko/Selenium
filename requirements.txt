@@ -1,4 +1,4 @@
 
 pytest
 requests
-selenium
+selenium ==4.6.0

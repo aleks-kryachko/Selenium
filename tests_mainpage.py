@@ -13,11 +13,8 @@ url = 'http://www.python.org'
 
 @pytest.fixture
 def browser():
-    print("\nstart browser for test..")
-
     browser = webdriver.Chrome(executable_path=".chromedriver.exe")
     browser = webdriver.Chrome()
-    # WebElement element = browser.findElement(By.tagName("p"));
     # browser.set_window_size(1416, 1026)
     # browser.maximize_window()
     url = 'http://www.python.org'
@@ -25,8 +22,6 @@ def browser():
     browser.get(url=url)
     browser.set_page_load_timeout(10) # sets timeout to 10 sec
     yield browser
-    # этот код выполнится после завершения теста
-    print("\nquit browser..")
     browser.quit()
 
 
@@ -55,7 +50,7 @@ def test_04_check_search(browser):
     browser.find_element(By.NAME, 'q').clear()
     browser.find_element(By.NAME, 'q').send_keys('3.9')
     browser.find_element(By.ID, 'submit').click()
-    # assert browser.find_element(By.LINK_TEXT, 'Version: Python 3.x.x')
+    assert browser.find_element(By.LINK_TEXT, 'Python')
 
     assert browser.find_element(By.CLASS_NAME, 'site-headline'), 'logo python tm'
     assert browser.find_elements(By.CSS_SELECTOR, '#content > div > section > h2'), 'Search'
@@ -75,10 +70,13 @@ def test_04_check_search(browser):
     browser.find_element(By.ID, 'submit').send_keys(Keys.ENTER)
     assert browser.find_elements(By.CSS_SELECTOR, '#content > div > section > form > ul > p'), 'Not found'
     # assert browser.find_element(By.LINK_TEXT, 'Not found')
-    # browser.find_element(By.LINK_TEXT, 'Not found')
-
-
-
+    # browser.find_element(By.LINK_TEXT, 'Python')
+def test_05_download(browser):
+    browser.find_element(By.CSS_SELECTOR, '#downloads > a').click()
+    browser.find_element(By.CSS_SELECTOR, '#touchnav-wrapper > header > div > div.header-banner > div > p:nth-child(5) > a:nth-child(1)').click()
+    browser.find_element(By.CSS_SELECTOR, '#content > div > section > article > ul > li > a').click()
+    browser.find_element(By.CSS_SELECTOR, '#content > div > section > article > table > tbody > tr:nth-child(3) > td:nth-child(1) > a').click()
+    time.sleep(8)
 
 
 
