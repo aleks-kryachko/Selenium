@@ -29,7 +29,11 @@ def test_01_status_code():
     url = 'https://www.lambdatest.com/'
     responce = requests.get(url=url)
     assert responce.status_code == 200, 'status not 200'
-def test_02_main_page(browser):
+def test_02_main_page_for_login(browser):
     assert browser.find_elements(By.XPATH, '//*[@id="header"]/nav/div/div/div[2]/div/div/div[2]/a[1]'), 'Login'
     assert browser.find_elements(By.XPATH, '//*[@id="header"]/nav/div/div/div[2]/div/div/div[2]/a[2]'), 'Sing Up'
+    browser.find_elements(By.XPATH, '//*[@id="header"]/nav/div/div/div[2]/div/div/div[2]/a[2]').click()
 
+def test_03_Sing_Up_page(browser):
+
+    browser.find_elements(By.XPATH, '//*[@id="header"]/nav/div/div/div[2]/div/div/div[2]/a[2]').click()
