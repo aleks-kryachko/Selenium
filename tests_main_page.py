@@ -33,6 +33,7 @@ def test_02_main_page(browser):
 
     assert "Python" in browser.title, 'title page'
     assert "Python" in browser.title, 'Download'
+    assert browser.find_element(By.PARTIAL_LINK_TEXT, 'Downloads')
 
 def test_03_assert_button(browser):
 
