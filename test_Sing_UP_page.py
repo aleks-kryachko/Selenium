@@ -32,8 +32,11 @@ def test_01_status_code():
 def test_02_main_page_for_login(browser):
     assert browser.find_elements(By.XPATH, '//*[@id="header"]/nav/div/div/div[2]/div/div/div[2]/a[1]'), 'Login'
     assert browser.find_elements(By.XPATH, '//*[@id="header"]/nav/div/div/div[2]/div/div/div[2]/a[2]'), 'Sing Up'
-    browser.find_elements(By.XPATH, '//*[@id="header"]/nav/div/div/div[2]/div/div/div[2]/a[2]').click()
+    # browser.find_elements(By.XPATH, '//*[@id="header"]/nav/div/div/div[2]/div/div/div[2]/a[2]').click()
 
 def test_03_Sing_Up_page(browser):
+    browser.find_element(By.PARTIAL_LINK_TEXT, 'Login').click()
+    browser.find_element(By.XPATH, '//*[@id="app"]/div[1]/div/div/div/div[1]/div/div[3]/p/span/span[2]/a').click()
+    time.sleep(3)
 
-    browser.find_elements(By.XPATH, '//*[@id="header"]/nav/div/div/div[2]/div/div/div[2]/a[2]').click()
+
