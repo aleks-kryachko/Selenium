@@ -36,6 +36,11 @@ def test_02_main_page_for_login(browser):
 
 def test_03_Sing_Up_page(browser):
     browser.find_element(By.PARTIAL_LINK_TEXT, 'Login').click()
+    # assert browser.find_element(By.PARTIAL_LINK_TEXT, 'google'), 'log_google'
+    # assert browser.find_element(By.PARTIAL_LINK_TEXT, 'gitHub'), 'log_gitHub'
+    # assert browser.find_element(By.PARTIAL_LINK_TEXT, 'gitHub'), 'log_sso'
+    # assert browser.find_element(By.PARTIAL_LINK_TEXT, 'email'), 'email'
+    # assert browser.find_element(By.PARTIAL_LINK_TEXT, 'password'), 'password'
     browser.find_element(By.XPATH, '//*[@id="app"]/div[1]/div/div/div/div[1]/div/div[3]/p/span/span[2]/a').click()
     time.sleep(3)
 
