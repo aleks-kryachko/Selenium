@@ -27,7 +27,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.11'
+        python-version: '3.x'
 
     - name: Install dependencies
       run: |
@@ -39,4 +39,5 @@ jobs:
         pytest -v --tb=line --test_Sing_UP_page.py
         pytest -v --tb=line --test_Yandex.py
 #        pytest -v --tb=line test_login_page.py
-
+#         env:
+#          BROWSER: chrome
