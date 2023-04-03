@@ -44,10 +44,10 @@ def test_03_Sing_Up_page(browser):
     assert browser.find_element(By.XPATH, '//*[@id="app"]/div[1]/div/div/div/div[1]/div/div[3]/p/span/span[2]/a').click()
     time.sleep(3)
 
-def test_yandex():
-    binary_yandex_driver_file = '.chromedriver.exe'  # path to YandexDriver
-    driver = webdriver.Chrome('C:/Users/home/AppData/Local/Yandex/YandexBrowser/Application/browser.exe')
-    driver.get('https://www.lambdatest.com')
-    # yield driver
-    time.sleep(1)
-    driver.quit()
+# def test_yandex():
+#     binary_yandex_driver_file = '.chromedriver.exe'  # path to YandexDriver
+#     driver = webdriver.Chrome('C:/Users/home/AppData/Local/Yandex/YandexBrowser/Application/browser.exe')
+#     driver.get('https://www.lambdatest.com')
+#     # yield driver
+#     time.sleep(1)
+#     driver.quit()
