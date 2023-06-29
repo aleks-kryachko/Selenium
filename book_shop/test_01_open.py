@@ -17,7 +17,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-# url = 'https://www.chitai-gorod.ru/'
+url = 'https://www.chitai-gorod.ru/'
 
 @pytest.fixture
 def browser():
@@ -36,8 +36,15 @@ def test_01_status_code():
     assert responce.status_code == 200, 'status not 200'
 
 def test_02(browser):
-    browser.find_element(By.CLASS_NAME, 'popmechanic-close').click()
+    # browser.find_element(By.CLASS_NAME, 'popmechanic-close').click()
     browser.find_element(By.CLASS_NAME, 'header-search__input').send_keys('тестирование')
+    # time.sleep(1)
     browser.find_element(By.CLASS_NAME, 'header-search__button-icon').click()
-    # assert browser.find_elements('тестирование')
-
+    # assert "Читай-город — интернет-магазин книг" in browser.title
+    assert browser.find_element(By.CLASS_NAME, 'products-list')
+    time.sleep(1)
+    browser.find_element(By.CSS_SELECTOR, '#__layout > div > div.app-wrapper__content > div.search-page.js-catalog-container > div > div > div > section > section > div > article:nth-child(4) > div.product-buttons.buttons.product-card__controls > div.button.action-button.blue').click()
+    browser.find_element(By.CSS_SELECTOR, '#__layout > div > div.app-wrapper__content > div.search-page.js-catalog-container > div > div > div > section > section > div > article:nth-child(3) > div.product-buttons.buttons.product-card__controls > div.button.action-button.blue')
+    time.sleep(1)
+    browser.find_element(By.LINK_TEXT, 'Купить').click()
+    time.sleep(1)
